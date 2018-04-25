@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Use this area to provide additional information.</p>
+
+@section scripts{ 
+     <script src="~/js/demo.js"></script>
+    <script>
+        //页面数据
+        var _pageData = {
+            pageIndex: 1,
+            city: "上海",
+        };
+        window.alert(_pageData.city);
+    </script>
+}
