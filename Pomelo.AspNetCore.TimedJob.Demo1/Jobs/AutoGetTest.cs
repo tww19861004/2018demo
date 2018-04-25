@@ -15,7 +15,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         [Invoke(Begin = "2018-04-24 15:40", Interval = 1000 * 10, SkipWhileExecuting = true)]
         public void Run()
         {
-            System.IO.File.AppendAllTextAsync("d:\\1.txt", "Sleep:"+i.ToString()+":"+System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + Environment.NewLine);
+            //System.IO.File.AppendAllTextAsync("d:\\1.txt", "Sleep:"+i.ToString()+":"+System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + Environment.NewLine);
         }
 
         public async Task<int> ExampleMethodAsync()
