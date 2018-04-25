@@ -30,7 +30,18 @@ namespace asnyc_deadlock
 
             //await关键字表示“等待”Task.Run传入的逻辑执行完毕，此时(等待时)AsyncSleep的调用方能继续往下执行（准确地说，是当前线程不会被阻塞）
             //Task.Run将开辟一个新线程执行指定逻辑
-            Task.Run(() => Sleep(10));
+            await Task.Run(async () =>
+             {
+                 try
+                 {
+                     Task<string> task = WaitSynchronously();
+                     string urlContents = await task;
+                 }
+                 catch (Exception ex)
+                 {
+
+                 }
+             });
 
             Console.WriteLine("step4,线程ID:{0}", System.Threading.Thread.CurrentThread.ManagedThreadId);
         }
