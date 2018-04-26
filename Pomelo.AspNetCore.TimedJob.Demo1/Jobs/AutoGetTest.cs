@@ -14,28 +14,21 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         //SkipWhileExecuting是否等待上一个执行完成，true为等待；
         [Invoke(Begin = "2018-04-24 15:40", Interval = 1000 * 10, SkipWhileExecuting = true)]
         public void Run()
-        {
-            //System.IO.File.AppendAllTextAsync("d:\\1.txt", "Sleep:"+i.ToString()+":"+System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + Environment.NewLine);
+        {                       
+            ExampleMethodAsync();            
         }
 
         public async Task<int> ExampleMethodAsync()
         {
-            System.Threading.Thread.Sleep(new Random().Next(5000,15000));
-            var httpClient = new HttpClient();
-            int exampleInt = (await httpClient.GetStringAsync("https://www.baidu.com/")).Length;             
+            await System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:ExampleMethodAsync-当前线程id:{System.Threading.Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}");            
+            int exampleInt = (await WaitAsynchronouslyAsync()).Length;             
             return exampleInt;
         }
 
         public async Task<string> WaitAsynchronouslyAsync()
         {
+            await System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:WaitAsynchronouslyAsync-当前线程id:{System.Threading.Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}");
             await Task.Delay(10000);
-            return "Finished";
-        }
-
-        public async Task<string> WaitSynchronously()
-        {
-            // Add a using directive for System.Threading.
-            Thread.Sleep(10000);
             return "Finished";
         }
     }
