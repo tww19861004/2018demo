@@ -49,10 +49,11 @@ namespace task1demo
             int i11 = task3.Result;
             
             //创建任务4
-            Task.Run(async() =>
+            Task task4 = Task.Run(async() =>
             {
                 int i = await test();
             });
+            task4.Wait();
 
             Console.ReadKey();
         }
