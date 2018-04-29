@@ -93,6 +93,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomelo.AspNetCore.TimedJob.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskdemo2", "taskdemo2\taskdemo2.csproj", "{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pic_demo", "pic_demo", "{F64D83C5-19A8-4426-BD1B-DCD3449ECECB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Angular", "Angular", "{E05CCBAE-42BC-4505-A800-FD2FB454BF1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{BBE5DBF7-D09B-4892-BAC9-BDD7AB33FC2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

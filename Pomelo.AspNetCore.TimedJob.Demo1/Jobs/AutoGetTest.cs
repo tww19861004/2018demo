@@ -20,9 +20,10 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
 
         public async Task<int> ExampleMethodAsync()
         {
-            await System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:ExampleMethodAsync-当前线程id:{System.Threading.Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}");            
-            int exampleInt = (await WaitAsynchronouslyAsync()).Length;             
-            return exampleInt;
+            await System.IO.File.AppendAllTextAsync("d:\\1.txt", $"1:{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:ExampleMethodAsync-当前线程id:{System.Threading.Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}");
+            //int exampleInt = (await WaitAsynchronouslyAsync()).Length;             
+            //return exampleInt;
+            return 1;
         }
 
         public async Task<string> WaitAsynchronouslyAsync()
