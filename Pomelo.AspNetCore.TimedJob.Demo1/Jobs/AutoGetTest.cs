@@ -15,7 +15,27 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
 {
     public class AutoGetTest : Job
     {
-        private static HttpClient hc = new HttpClient();
+        private static HttpClient _httpClient;
+
+        public HttpClient httpClient
+        {
+            get
+            {
+                if (_httpClient == null)
+                {                    
+                    HttpClientHandler httpClientHandler = new HttpClientHandler { AllowAutoRedirect = false };
+                    httpClientHandler.CookieContainer = new CookieContainer();
+                    _httpClient = new HttpClient(httpClientHandler);
+                    _httpClient.MaxResponseContentBufferSize = 256000;
+                    //_httpClient.DefaultRequestHeaders.Add("user-agent", UserAgent);
+                    Task task =_httpClient.GetAsync("http://www.baidu.com");
+                    task.Wait();
+                    
+                }
+                return _httpClient;
+            }
+        }
+
         private Regex _regex = new Regex(@"\{.*\}", RegexOptions.IgnoreCase);
 
         private static string _token;
@@ -23,16 +43,19 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         {
             get
             {
-                if (string.IsNullOrEmpty(_token))
-                {
-                    _token = GetToken();
-                }
-                return _token;
+                //if (string.IsNullOrEmpty(_token) || _token == "the fisrt two args should be string type:0,1!")
+                //{
+                //    httpClient.GetAsync("https://www.baidu.com/");
+                //    _token = GetToken();
+                //}
+                //return _token;
+                return GetToken();
             }
         }
         // Begin 起始时间；Interval执行时间间隔，单位是毫秒，建议使用以下格式，此处为10秒；
         //SkipWhileExecuting是否等待上一个执行完成，true为等待；
-        [Invoke(Begin = "2018-04-24 15:40", Interval = 600 * 1, SkipWhileExecuting = true)]
+        //模拟高并发
+        [Invoke(Begin = "2018-04-24 15:40", Interval = 20 * 1, SkipWhileExecuting = true)]
         public void Run()
         {
             System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:百度token:{Token}{Environment.NewLine}");
@@ -51,7 +74,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                     {"logintype", "dialogLogin"},
                     {"callback", "bd__cbs__123"},
                 };
-            Task<HttpResponseMessage> task = hc.GetAsync(new Uri("https://passport.baidu.com/v2/api/?getapi&" + nvc.ToQueryString()));
+            Task<HttpResponseMessage> task = httpClient.GetAsync(new Uri("https://passport.baidu.com/v2/api/?getapi&" + nvc.ToQueryString()));
             task.Wait();
             var response = task.Result;            
             response.EnsureSuccessStatusCode();
@@ -93,7 +116,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                 //{"vcodetype", "7ea7JrZpMpKLyZu112UWT4NIYUCa8eOetNIn0rP8P6FMti58cJ8BIl1lnRqX9fdeYp84BbSMmr+yLUGUd/Do8yDrI/YV0uaa400z"},
                 {"callback", "bd__cbs__1234"},
             };
-            HttpResponseMessage response = hc.GetAsync(new Uri("https://passport.baidu.com/v2/?reggetcodestr&" + nvc.ToQueryString())).Result;
+            HttpResponseMessage response = httpClient.GetAsync(new Uri("https://passport.baidu.com/v2/?reggetcodestr&" + nvc.ToQueryString())).Result;
             response.EnsureSuccessStatusCode();
             String result = response.Content.ReadAsStringAsync().Result;
 
@@ -107,7 +130,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                     if (no.Equals("0"))
                     {
                         string verifyStr = obj.data.verifyStr.Value;
-                        response = hc.GetAsync(new Uri("https://passport.baidu.com/cgi-bin/genimage?" + obj.data.verifyStr.Value)).Result;
+                        response = httpClient.GetAsync(new Uri("https://passport.baidu.com/cgi-bin/genimage?" + obj.data.verifyStr.Value)).Result;
                         response.EnsureSuccessStatusCode();
                         if (response.StatusCode.Equals(HttpStatusCode.OK))
                         {
