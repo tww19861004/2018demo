@@ -89,7 +89,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encodingdemo", "encodingdem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crawler", "Crawler", "{7B1049DF-F820-4FAD-8E86-1B224168B8F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomelo.AspNetCore.TimedJob.Demo1", "Pomelo.AspNetCore.TimedJob.Demo1\Pomelo.AspNetCore.TimedJob.Demo1.csproj", "{B7948E72-2B6A-4D42-A009-916DCA2DEDD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomelo.AspNetCore.TimedJob.Demo1", "Pomelo.AspNetCore.TimedJob.Demo1\Pomelo.AspNetCore.TimedJob.Demo1.csproj", "{B7948E72-2B6A-4D42-A009-916DCA2DEDD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskdemo2", "taskdemo2\taskdemo2.csproj", "{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -213,6 +215,10 @@ Global
 		{B7948E72-2B6A-4D42-A009-916DCA2DEDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7948E72-2B6A-4D42-A009-916DCA2DEDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7948E72-2B6A-4D42-A009-916DCA2DEDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E71B6BF9-02C3-4E69-AC38-452BA224EAD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,6 +252,7 @@ Global
 		{2CFEBEF1-FFFF-4516-B181-C478FF31C346} = {32DC2230-1330-4231-B7CC-41668ECD4D12}
 		{7952B01F-AB07-4E3C-BD1C-0B2A749C70E6} = {7D9BA568-F536-4D92-A65E-84DE535E3139}
 		{B7948E72-2B6A-4D42-A009-916DCA2DEDD0} = {7B1049DF-F820-4FAD-8E86-1B224168B8F9}
+		{E71B6BF9-02C3-4E69-AC38-452BA224EAD6} = {422FEB45-6C11-408B-B4C8-5003323B0150}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {819BC56C-AD9B-4619-989F-711FCC7E312B}

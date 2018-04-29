@@ -16,7 +16,7 @@ namespace UsingEvent
 
     public class MyButton              //创建MyButton
     {
-        public event ClickEventHandler ClickEvent;//声明一个事件
+        public event ClickEventHandler ClickEvent;//声明一个事件,用于发布点击消息
 
         public void Click()                                 //单击MyButton
         {
