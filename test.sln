@@ -105,6 +105,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlideVerificationCode", "Sl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphEngine", "GraphEngine", "{98E57754-0C40-4561-874C-6DD2C542D8BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BitCoinCheck", "BitCoinCheck", "{955580E1-1A60-43B9-B4C8-60342760297E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
