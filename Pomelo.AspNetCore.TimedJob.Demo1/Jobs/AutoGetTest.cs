@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.DrawingCore;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -28,9 +30,25 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                     _httpClient = new HttpClient(httpClientHandler);
                     _httpClient.MaxResponseContentBufferSize = 256000;
                     //_httpClient.DefaultRequestHeaders.Add("user-agent", UserAgent);
-                    Task task =_httpClient.GetAsync("http://www.baidu.com");
+                    Task<HttpResponseMessage> task =_httpClient.GetAsync("http://www.baidu.com");
                     task.Wait();
-                    
+                    var response = task.Result;
+                    var t1 = response.Headers.GetValues("Set-Cookie").ToList();
+                    for (int i = 0; i < t1.Count(); i++)
+                    {
+                        string[] demo = t1[i].Split(new char[] { ';' });
+                        if (demo != null && demo.Length == 5)
+                        {
+                            httpClientHandler.CookieContainer.Add(new Cookie()
+                            {
+                                Expires = DateTime.Now.AddDays(2),
+                                Domain = demo[4].Substring(demo[4].IndexOf("=") + 1, demo[4].Length - demo[4].IndexOf("=") - 1),
+                                Name = demo[0].Substring(0, demo[0].IndexOf("=")),
+                                Value = demo[0].Substring(demo[0].IndexOf("=") + 1, demo[0].Length - demo[0].IndexOf("=") - 1),
+                                Path = demo[3].Substring(demo[3].IndexOf("=") + 1, demo[3].Length - demo[3].IndexOf("=") - 1)
+                            });
+                        }
+                    }
                 }
                 return _httpClient;
             }
@@ -43,22 +61,23 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         {
             get
             {
-                //if (string.IsNullOrEmpty(_token) || _token == "the fisrt two args should be string type:0,1!")
-                //{
-                //    httpClient.GetAsync("https://www.baidu.com/");
-                //    _token = GetToken();
-                //}
-                //return _token;
-                return GetToken();
+                if (string.IsNullOrEmpty(_token) || _token == "the fisrt two args should be string type:0,1!")
+                {
+                    httpClient.GetAsync("https://www.baidu.com/");
+                    _token = GetToken();
+                }
+                return _token;
+                //return GetToken();
             }
         }
         // Begin 起始时间；Interval执行时间间隔，单位是毫秒，建议使用以下格式，此处为10秒；
         //SkipWhileExecuting是否等待上一个执行完成，true为等待；
         //模拟高并发
-        [Invoke(Begin = "2018-04-24 15:40", Interval = 20 * 1, SkipWhileExecuting = true)]
+        [Invoke(Begin = "2018-04-24 15:40", Interval = 1000 * 1, SkipWhileExecuting = true)]
         public void Run()
         {
             System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:百度token:{Token}{Environment.NewLine}");
+            GetValidImage();
         }
 
         private string GetToken()
@@ -134,7 +153,13 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                         response.EnsureSuccessStatusCode();
                         if (response.StatusCode.Equals(HttpStatusCode.OK))
                         {
-                         //   return Image.FromStream(response.Content.ReadAsStreamAsync().Result);
+                            Task<Stream> taskStream= response.Content.ReadAsStreamAsync();
+                            taskStream.Wait();
+
+                            Image image = Image.FromStream(taskStream.Result);
+                            image.Save($"d:\\test\\{Guid.NewGuid().ToString()}.png");
+
+                            //   return Image.FromStream(response.Content.ReadAsStreamAsync().Result);
                         }                        
                     }
                 }                

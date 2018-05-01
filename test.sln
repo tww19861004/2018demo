@@ -101,6 +101,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{BBE5DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "图片生产和图片识别", "图片生产和图片识别\图片生产和图片识别.csproj", "{869A8189-CEED-4A82-AC75-80D1BACA1CAE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlideVerificationCode", "SlideVerificationCode", "{80C1E1A0-C910-4E48-8256-EBE63D8804CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphEngine", "GraphEngine", "{98E57754-0C40-4561-874C-6DD2C542D8BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
