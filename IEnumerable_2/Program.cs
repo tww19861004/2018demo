@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace ss
 {
     public class LinkListNode<T>
@@ -54,14 +56,16 @@ namespace ss
         static void Main()
         {
             LinkList<int> list1 = new LinkList<int>();
-            list1.AddLast(1);
-            list1.AddLast(2);
-            list1.AddLast(3);
-            list1.AddLast(4);
+            Parallel.For(0, 10, (i) =>
+              {
+                  list1.AddLast(i);
+              });
+
             foreach (int i in list1)
             {
                 Console.WriteLine(i);
             }
+            Console.ReadKey();
         }
     }
 }
