@@ -16,12 +16,20 @@ namespace WebClientDemo
                 client.Headers["Type"] = "GET";
                 client.Headers["Accept"] = "application/json";
                 client.Encoding = Encoding.UTF8;
+                //client.DownloadStringCompleted += OnDownloadStringCompleted;
                 client.DownloadStringCompleted += (senderobj, es) =>
                 {
-                    var obj = es.Result;
+                    Console.WriteLine(es.Result);
                 };
                 client.DownloadStringAsync(new Uri("https://www.baidu.com/"));
             }
+            Console.ReadKey();
         }
+
+        private static void OnDownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            Console.WriteLine(e.Result);
+        }
+
     }
 }

@@ -22,7 +22,8 @@ namespace UsingEvent
         {
             if (ClickEvent != null)
             {
-                Console.WriteLine("MyButton: 我被单击了");
+                Console.WriteLine("Button发布消息: 我被单击了");
+                //所有订阅该消息的人，都会收到
                 ClickEvent(this, new ClickEvnentArgs() { id = System.Threading.Thread.CurrentThread.ManagedThreadId});                          //抛出事件，给所有相应者
             }
         }
@@ -35,13 +36,14 @@ namespace UsingEvent
         public MyForm()
         {
             //添加事件到myButton中，当myButton被单击的时候就会调用相应的处理函数
+            //订阅button的消息
             myButton.ClickEvent += new ClickEventHandler(OnClickEvent);
         }
 
         //事件处理函数
         void OnClickEvent(object sender, ClickEvnentArgs e)
         {
-            Console.WriteLine("MyForm: 我知道你被单击了！"+e.id.ToString());
+            Console.WriteLine("MyForm: 收到消息！"+e.id.ToString());
         }
     }
 
