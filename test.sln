@@ -113,6 +113,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yield_demo1", "yield_demo1\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yield", "yield", "{E9CE17BB-AEB3-412A-8F04-1339EB7E59D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "多线程爬虫抓取免费代理IP", "多线程爬虫抓取免费代理IP\多线程爬虫抓取免费代理IP.csproj", "{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -243,6 +245,10 @@ Global
 		{D3F9E10A-A9EA-4344-A6A7-A38894BAF579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3F9E10A-A9EA-4344-A6A7-A38894BAF579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3F9E10A-A9EA-4344-A6A7-A38894BAF579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -282,6 +288,7 @@ Global
 		{9A4FC12A-EBAE-4636-B47D-166A9C14F3AE} = {F64D83C5-19A8-4426-BD1B-DCD3449ECECB}
 		{D3F9E10A-A9EA-4344-A6A7-A38894BAF579} = {E9CE17BB-AEB3-412A-8F04-1339EB7E59D1}
 		{E9CE17BB-AEB3-412A-8F04-1339EB7E59D1} = {7D9BA568-F536-4D92-A65E-84DE535E3139}
+		{5E25647A-30DD-4260-AFDA-4257DC4FCDEC} = {7B1049DF-F820-4FAD-8E86-1B224168B8F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {819BC56C-AD9B-4619-989F-711FCC7E312B}
