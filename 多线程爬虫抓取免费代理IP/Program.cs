@@ -29,8 +29,6 @@ namespace 多线程爬虫抓取免费代理IP
                 this.port = pport;
                 this.speed = pspeed;
             }
-
-
         }
         //抓去处理方法
         static void getProxyList(object pageIndex)

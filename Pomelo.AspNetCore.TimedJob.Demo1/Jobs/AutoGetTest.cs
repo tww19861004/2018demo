@@ -73,7 +73,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         // Begin 起始时间；Interval执行时间间隔，单位是毫秒，建议使用以下格式，此处为10秒；
         //SkipWhileExecuting是否等待上一个执行完成，true为等待；
         //模拟高并发
-        [Invoke(Begin = "2018-04-24 15:40", Interval = 1000 * 1, SkipWhileExecuting = true)]
+        [Invoke(Begin = "2019-05-07 15:40", Interval = 1000 * 1, SkipWhileExecuting = true)]
         public void Run()
         {
             System.IO.File.AppendAllTextAsync("d:\\1.txt", $"{System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}:百度token:{Token}{Environment.NewLine}");
