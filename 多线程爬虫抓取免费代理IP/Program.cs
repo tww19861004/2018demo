@@ -124,7 +124,7 @@ namespace 多线程爬虫抓取免费代理IP
         static void Main(string[] args)
         {
             //多线程同时抓15页
-            for (int i = 1; i <= 15; i++)
+            for (int i = 1; i <= 1; i++)
             {
 
 
