@@ -13,10 +13,10 @@ namespace test
         static void Main(string[] args)
         {
 
-            string str = " ";
-            Console.WriteLine(string.IsNullOrEmpty(str.Trim()));
-            var supplierOrderCodes = str.Trim().Split('|');
-            Console.ReadKey();
+            decimal d = 46.28611M;
+
+            string dStr = Math.Round(d, 2).ToString();
+
             return;
 
             try

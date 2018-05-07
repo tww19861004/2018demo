@@ -113,7 +113,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yield_demo1", "yield_demo1\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yield", "yield", "{E9CE17BB-AEB3-412A-8F04-1339EB7E59D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "多线程爬虫抓取免费代理IP", "多线程爬虫抓取免费代理IP\多线程爬虫抓取免费代理IP.csproj", "{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "freeip", "多线程爬虫抓取免费代理IP\freeip.csproj", "{5E25647A-30DD-4260-AFDA-4257DC4FCDEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
