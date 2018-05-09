@@ -44,6 +44,7 @@ namespace task1demo
             });
 
             //创建任务3           
+            //Task(Func<object, TResult> function, object state);
             Task<Int32> task3 = new Task<Int32>(n => Sum(n), 100);
             task3.Start();            
             int i11 = task3.Result;
@@ -53,7 +54,8 @@ namespace task1demo
             {
                 int i = await test();
             });
-            task4.Wait();
+            task4.Wait();            
+
 
             Console.ReadKey();
         }
@@ -65,8 +67,11 @@ namespace task1demo
 
         private static Int32 Sum(object i)
         {
-            Thread.Sleep(1000);
-            return Convert.ToInt32(i);
+            if (Convert.ToInt32(i)!=100)
+            {
+                //throw new Exception("模拟异常");
+            }
+            return Convert.ToInt32(i)+1;
         }
     }
 }
