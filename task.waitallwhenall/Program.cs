@@ -14,6 +14,7 @@ namespace task.waitallwhenall
             Task[] tasks = new Task[2];
             tasks[0] = new Task<Int32>(n => Sum(n), 100);
             tasks[0].Start();//异步的
+            System.Threading.Thread.Sleep(2000);
             tasks[1] = new Task<Int32>(n => Sum(n), 200);
             //tasks[1].RunSynchronously();//阻塞当前线程了
             tasks[1].Start();//阻塞当前线程了
