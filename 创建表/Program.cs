@@ -19,7 +19,7 @@ namespace 创建表
             PetaPoco.Database db = new PetaPoco.Database(connectionString, sqlFactory);
 
             #region 创建测试表1
-            //string dropQuery = "IF EXISTS qrtz_operatelog DROP TABLE qrtz_operatelog";
+            //string dropQuery = "DROP TABLE qrtz_operatelog";
             //db.Execute(dropQuery);
             //String createQuery =
             //            @"CREATE TABLE IF NOT EXISTS
@@ -33,27 +33,39 @@ namespace 创建表
             //                [CreateTime]   TEXT         NOT NULL                           
             //                )";
             String createQuery =
-                        @"CREATE TABLE IF NOT EXISTS
+                        @"DROP TABLE qrtz_operatelog;
+                            CREATE TABLE IF NOT EXISTS
                             [qrtz_operatelog] (
                             [id]           INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT,
                             [TableName]    VARCHAR(255)  ,
                             [Describe]     VARCHAR(255)  ,
                             [Type]         INTEGER       NOT NULL,
                             [CreateTime]   datetime      NOT NULL,
-                            [UpdateTime]   datetime      NOT NULL
+                            [UpdateTime]   datetime      
                             )";
             db.Execute(createQuery);
 
 
             createQuery =
-                        @"CREATE TABLE IF NOT EXISTS
+                        @"DROP TABLE Schedule;
+                            CREATE TABLE IF NOT EXISTS
                             [Schedule] (
-                            [JobId]        INTEGER       NOT NULL ,
-                            [TableName]    VARCHAR(255)  ,
-                            [Describe]     VARCHAR(255)  ,
-                            [Type]         INTEGER       NOT NULL,
+                            [JobId]        INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            [JobName]    VARCHAR(255)  ,
+                            [JobGroup]     VARCHAR(255)  ,
+                            [JobStatus]         INTEGER       NOT NULL,
+                            [Cron]   varchar(50)      ,
+                            [AssemblyName]   varchar(50)      NOT NULL,
+                            [ClassName]   varchar(50)      NOT NULL,
+                            [Remark]     VARCHAR(255)  ,
                             [CreateTime]   datetime      NOT NULL,
-                            [UpdateTime]   datetime      NOT NULL
+                            [UpdateTime]   datetime  ,
+                            [RunTimes]         INTEGER       NOT NULL,
+                            [BeginTime]   datetime      NOT NULL,
+                            [EndTime]   datetime      ,
+                            [TriggerType]         INTEGER       NOT NULL,
+                            [IntervalSecond]         INTEGER       NOT NULL,
+                            [Url]     VARCHAR(255)
                             )";
             db.Execute(createQuery);
 
