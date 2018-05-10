@@ -12,5 +12,10 @@ namespace T4Template
         {
 
         }
+
+        static string test()
+        {
+            return "hello world";
+        }
     }
 }
