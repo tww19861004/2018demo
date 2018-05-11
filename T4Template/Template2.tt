@@ -1,0 +1,207 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #><#@ output extension=".cs" encoding="utf-8"#>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Core.DLL" #>
+<#@ assembly name="System.Data.DLL" #>
+<#@ assembly name="System.Web.DLL" #>
+<#@ assembly name="System.Xml.DLL" #>
+<#@ import namespace="System"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ import namespace="System.Data"#>
+<#@ import namespace="System.Data.Common"#>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="System.Reflection"#>
+<#@ import namespace="System.Text"#>
+<#
+    //var assembly = Assembly.LoadFile(this.Host.ResolvePath("..\\Bin\\System.Data.SQLite.dll"));
+	var assembly = @"D:\Project\Demo\testdemo\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll";
+
+    StringBuilder sb = new StringBuilder();
+    using (DbConnection conn = (DbConnection)assembly.CreateInstance("System.Data.SQLite.SQLiteConnection"))
+    {
+        //string dbPath = this.Host.ResolvePath("..\\App_Data\\cms.s3db");
+		string dbPath = @"D:\Project\Demo\.netcore_ace\src\DotNetCore\db\Chloe.db";
+        conn.ConnectionString = @"Data Source=" + dbPath;
+
+        if (conn.State != ConnectionState.Open) 
+            conn.Open();
+
+        DataTable dt = conn.GetSchema("Columns");
+
+        List<Column> columns = new List<Column>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            Column column = getColumn(dr);
+            columns.Add(column);
+        }
+
+        List<Table> tables = new List<Table>();
+        foreach (string name in columns.Select(t => t.table).Distinct().OrderBy(t=>t))
+        {
+            Table table = getTable(name, columns);
+            tables.Add(table);
+        }
+
+        sb.Append(@"using System;
+using Tianv.Data;");
+        foreach (Table table in tables)
+        {
+                if (string.Equals(table.name, "sqlite_sequence", StringComparison.OrdinalIgnoreCase)) continue;
+                else if (table.name.StartsWith("_")) continue;
+                
+                StringBuilder inters = new StringBuilder();
+                if (table.interfaces != null)
+                {
+                    foreach (string temp in table.interfaces)
+                    {
+                        inters.Append(",");
+                        inters.Append(temp);
+                    }
+                }
+
+                sb.Append(@"
+
+public partial class " + table.name + @" : DbItem<" + table.name + @">");
+                sb.Append(inters);
+                sb.Append(@"
+{");
+
+                foreach (Column column in table.columns)
+                {
+                    if (string.Equals(column.name, "id", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+                    string t = @"
+    public {1} {0} { get; set; }";
+                    sb.Append(t.Replace("{0}", column.name)
+                    .Replace("{1}", getType(column.type)));
+                }
+                sb.Append(@"
+}");
+        }
+    }
+#>
+<#=sb.ToString()#>
+<#+
+    public enum DataType { BOOL, INT, LONG, DATETIME, DECIMAL, STRING, TEXT, UNKNOW }
+    public class Column
+    {
+        public string table { get; set; }
+        public bool key { get; set; }
+        public string name { get; set; }
+        public int position { get; set; }
+        public bool nullable { get; set; }
+        public DataType type { get; set; }
+        public int length { get; set; }
+        public bool autoincrement { get; set; }
+        public bool unique { get; set; }
+    }
+    public class Table
+    {
+        public string name { get; set; }
+        public List<Column> columns { get; set; }
+        public List<string> interfaces { get; set; }
+    }
+    public DataType getDataType(DataRow dr)
+    {
+        string type = (string)dr["DATA_TYPE"];
+        switch (type.ToLower())
+        {
+            case "bit": return DataType.BOOL;
+            case "int": return DataType.INT;
+            case "integer": return DataType.LONG;
+            case "datetime": return DataType.DATETIME;
+            case "decimal": return DataType.DECIMAL;
+            case "nvarchar": return DataType.STRING;
+            case "ntext": return DataType.TEXT;
+            default: return DataType.UNKNOW;
+        }
+    }
+    public string getType( DataType type )
+    {
+        switch( type )
+        {
+            case DataType.BOOL:
+                return "bool";
+            case DataType.INT:
+                return "int";
+            case DataType.LONG:
+                return "int";
+            case DataType.DATETIME:
+                return "DateTime";
+            case DataType.DECIMAL:
+                return "decimal";
+            case DataType.STRING:
+            case DataType.TEXT:
+                return "string";
+            default:
+                return "object";
+        }
+    }
+    private Column getColumn(DataRow dr)
+    {
+        return new Column()
+        {
+            table = (string)dr["TABLE_NAME"],
+            key = (bool)dr["PRIMARY_KEY"],
+            name = (string)dr["COLUMN_NAME"],
+            position = Convert.ToInt32(dr["ORDINAL_POSITION"]),
+            nullable = (bool)dr["IS_NULLABLE"],
+            type = getDataType(dr),
+            length = Convert.ToInt32(dr["CHARACTER_MAXIMUM_LENGTH"]),
+            autoincrement = (bool)dr["AUTOINCREMENT"],
+            unique = (bool)dr["UNIQUE"]
+        };
+    }
+    private Table getTable(string name, List<Column> columns)
+    {
+        Table table = new Table()
+        {
+            name = name,
+            columns = columns.Where(t => t.table == name).ToList()
+        };
+        List<string> cs = table.columns
+            .Select(t => t.name)
+            .ToList();                                                                                                                                                                                                                                                                                 
+        
+        Dictionary<string, string[]> inters = getInterfaces();
+        foreach (string key in inters.Keys)
+        {
+            bool isInh = true;
+            foreach (string temp in inters[key])
+            {
+                if (!cs.Contains(temp))
+                {
+                    isInh = false;
+                    break;
+                }
+            }
+            if (isInh)
+            {
+                if (table.interfaces == null)
+                    table.interfaces = new List<string>();
+                table.interfaces.Add(key);
+            }
+        }
+        return table;
+    }
+
+    private Dictionary<string, string[]> Interfaces;
+    public Dictionary<string, string[]> getInterfaces()
+    {
+        if (Interfaces == null)
+        {
+            Interfaces = new Dictionary<string, string[]>();
+            Interfaces.Add("ITree", new string[] { "Sort", "ParentId", "Depth" });
+            Interfaces.Add("ITitle", new string[] { "Title" });
+            Interfaces.Add("ISort", new string[] { "Sort" });
+            Interfaces.Add("IStyle", new string[] { "Code_RequireJs", "Code_Js", "Code_RequireCss", "Code_Css" });
+            Interfaces.Add("IEnable", new string[] { "Enable" });
+            Interfaces.Add("ITime", new string[] { "Time_Create", "Time_Update" });
+            Interfaces.Add("ISeo", new string[] { "Seo_File", "Seo_Title", "Seo_Description", "Seo_Keywords" });
+            Interfaces.Add("IItem", new string[] { "TopicId", "Title", "Sort" });//, "Enable", "Time_Enable"
+        }
+        return Interfaces;
+    }
+    
+#>
