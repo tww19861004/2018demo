@@ -44,6 +44,16 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Template1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="带高亮的模板.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>带高亮的模板.tt</DependentUpon>
+    </Compile>
     <Compile Include="TextTemplate1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,11 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="CodeTemplates\DbHelper.ttinclude" />
-    <None Include="CodeTemplates\Manager.ttinclude" />
-    <None Include="packages.config" />
+    <None Include="ReuseableTemplate1.ttinclude" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Template1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Template1.cs</LastGenOutput>
+    </Content>
+    <Content Include="带高亮的模板.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>带高亮的模板.cs</LastGenOutput>
+    </Content>
     <Content Include="TextTemplate1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TextTemplate1.cs</LastGenOutput>
