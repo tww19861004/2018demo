@@ -21,6 +21,17 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
             iplist.Add(new proxy(Guid.NewGuid().ToString(),"1234",2));
             System.IO.File.AppendAllTextAsync("d:\\freeIP.txt", $"{DateTime.Now.ToString()}{Environment.NewLine}");            
         }
+
+        [Invoke(Begin = "2018-04-07 15:40", Interval = 10000 * 1, SkipWhileExecuting = true)]
+        public void Run1()
+        {
+            if (!test.Contains("1234"))
+            {
+                test.Add("1234");
+            }
+            iplist.Add(new proxy(Guid.NewGuid().ToString(), "1234", 2));
+            System.IO.File.AppendAllTextAsync("d:\\freeIP1.txt", $"{DateTime.Now.ToString()}{Environment.NewLine}");
+        }
     }
 
     public class proxy
