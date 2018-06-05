@@ -12,17 +12,20 @@ namespace test
 
         static void Main(string[] args)
         {
-            DateTime d1 = DateTime.Now;
-            System.Threading.Thread.Sleep(1000);
-            DateTime d2 = DateTime.Now.AddDays(2);
-            TimeSpan ts = d2 - d1;
-            var s = ts.ToString(@"dd\:hh\:mm\:ss");
-            var s1 = TimeSpan.FromMilliseconds(ts.TotalMilliseconds).ToString(@"dd\:hh\:mm\:ss");
+            string strFrom = GetTimeStamp(new DateTime(2018, 6, 4, 0, 0, 0, 0));
+            string strTo = GetTimeStamp(new DateTime(2018, 6, 5, 23, 59, 59, 0));
+            HttpClient hc = new HttpClient();
+            var task = hc.GetStringAsync($"http://apm.17usoft.com/api/web/state1?appName=gny.tcinnerapi.ghotel&from={strFrom}&to={strTo}&agentId=&env=1");
+            task.Wait();
+            string str = task.Result;
         }
 
-        public static void ReceiveDelegateArgsFunc(Func<int, string> func)
+        /// 获取时间戳  
+        /// </summary>  
+        public static string GetTimeStamp(DateTime dt)
         {
-            Console.WriteLine(func(21));
+            TimeSpan ts = dt - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalMilliseconds).ToString();
         }
     }
 }

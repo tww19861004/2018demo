@@ -11,7 +11,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
 
         private static BloomFilter<string> test = new BloomFilter<string>(20, 3);
 
-        [Invoke(Begin = "2018-04-07 15:40", Interval = 10000 * 1, SkipWhileExecuting = true)]
+        [Invoke(Begin = "2019-04-07 15:40", Interval = 10000 * 1, SkipWhileExecuting = true)]
         public void Run()
         {
             if (!test.Contains("1234"))
@@ -22,7 +22,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
             System.IO.File.AppendAllTextAsync("d:\\freeIP.txt", $"{DateTime.Now.ToString()}{Environment.NewLine}");            
         }
 
-        [Invoke(Begin = "2018-04-07 15:40", Interval = 10000 * 1, SkipWhileExecuting = true)]
+        [Invoke(Begin = "2019-04-07 15:40", Interval = 10000 * 1, SkipWhileExecuting = true)]
         public void Run1()
         {
             if (!test.Contains("1234"))
