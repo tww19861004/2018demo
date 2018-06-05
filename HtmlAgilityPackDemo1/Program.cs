@@ -12,7 +12,7 @@ namespace HtmlAgilityPackDemo1
         static void Main(string[] args)
         {
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml("http://tcinnerapi.17usoft.net/ghotel/document.aspx");
+            doc.LoadHtml("123412341");
             var node = doc.DocumentNode;
 
             string xpathDiv = @"/html/body/div/h2[1]/span";
