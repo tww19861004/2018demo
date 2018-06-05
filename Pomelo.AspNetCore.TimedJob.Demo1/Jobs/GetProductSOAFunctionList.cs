@@ -31,7 +31,7 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
                 }
                 return _httpClient;
             }
-        }
+        }        
         // Begin 起始时间；Interval执行时间间隔，单位是毫秒，建议使用以下格式，此处为10秒；
         //SkipWhileExecuting是否等待上一个执行完成，true为等待；
         //模拟高并发
@@ -39,17 +39,25 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
         public void Run()
         {
             //先从文件中读取
-            //FileStream fs = new FileStream("d:\\SOA线上还在被调用的列表.txt", FileMode.Open,FileAccess.Read);
-            //StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-            //string strLine = "";
-            //while ((strLine = sr.ReadLine()) != null)
+            //try
+            //{
+            //    FileStream fs = new FileStream("d:\\SOA线上直销还在被调用的列表.txt", FileMode.Open, FileAccess.Read);
+            //    StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+            //    string strLine = "";
+            //    while ((strLine = sr.ReadLine()) != null)
+            //    {
+
+            //    }
+            //}
+            //catch (Exception ex)
             //{
 
             //}
 
-            string strFrom = GetTimeStamp(DateTime.UtcNow.AddHours(-6));
+
+            string strFrom = GetTimeStamp(DateTime.UtcNow.AddHours(-24));
             string strTo = GetTimeStamp(DateTime.UtcNow);            
-            var task = httpClient.GetStringAsync($"http://apm.17usoft.com/api/web/state1?appName=gny.tcinnerapi.ghotel&from={strFrom}&to={strTo}&agentId=&env=1");
+            var task = httpClient.GetStringAsync($"12345?appName=12345&from={strFrom}&to={strTo}&agentId=&env=1");
             task.Wait();
             string str = task.Result;
             Welcome[] r1 = Welcome.FromJson(str);
@@ -65,8 +73,50 @@ namespace Pomelo.AspNetCore.TimedJob.Demo1.Jobs
             }
             if(strBuilder!=null)
             {
-                System.IO.File.AppendAllTextAsync("d:\\SOA线上还在被调用的列表.txt", strBuilder.ToString());
+                System.IO.File.AppendAllTextAsync("d:\\SOA线上直销还在被调用的列表.txt", strBuilder.ToString());
             }                       
+        }
+
+        [Invoke(Begin = "2018-06-05 15:10", Interval = 30 * 1000, SkipWhileExecuting = true)]
+        public void Run1()
+        {
+            //先从文件中读取
+            //try
+            //{
+            //    FileStream fs = new FileStream("d:\\SOA线上分销还在被调用的列表.txt", FileMode.Open, FileAccess.Read);
+            //    StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+            //    string strLine = "";
+            //    while ((strLine = sr.ReadLine()) != null)
+            //    {
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+
+
+            string strFrom = GetTimeStamp(DateTime.UtcNow.AddHours(-72));
+            string strTo = GetTimeStamp(DateTime.UtcNow);
+            var task = httpClient.GetStringAsync($"12345?appName=hotel.12345&from={strFrom}&to={strTo}&agentId=&env=1");
+            task.Wait();
+            string str = task.Result;
+            Welcome[] r1 = Welcome.FromJson(str);
+            StringBuilder strBuilder = null;
+            if (r1 != null && r1.Any() && r1.First().Result.Any())
+            {
+                strBuilder = new StringBuilder();
+                strBuilder.Append($"Web请求,访问量{Environment.NewLine}");
+                foreach (var item in r1.First().Result)
+                {
+                    strBuilder.Append($"{item.DestId},{item.Count}{Environment.NewLine}");
+                }
+            }
+            if (strBuilder != null)
+            {
+                System.IO.File.AppendAllTextAsync("d:\\SOA线上分销还在被调用的列表.txt", strBuilder.ToString());
+            }
         }
         /// 获取时间戳  
         /// </summary>  

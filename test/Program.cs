@@ -15,7 +15,7 @@ namespace test
             string strFrom = GetTimeStamp(new DateTime(2018, 6, 4, 0, 0, 0, 0));
             string strTo = GetTimeStamp(new DateTime(2018, 6, 5, 23, 59, 59, 0));
             HttpClient hc = new HttpClient();
-            var task = hc.GetStringAsync($"http://apm.17usoft.com/api/web/state1?appName=gny.tcinnerapi.ghotel&from={strFrom}&to={strTo}&agentId=&env=1");
+            var task = hc.GetStringAsync($"12345?appName=12345&from={strFrom}&to={strTo}&agentId=&env=1");
             task.Wait();
             string str = task.Result;
         }
