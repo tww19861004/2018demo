@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>LiftTimes</h2>
+
+<table border="1">
+    <tr>
+        <td colspan="2">Controller Operarations:</td>
+    </tr>
+    <tr>
+        <td>Transient</td>
+        <td>@ViewBag.Transient.OperationId</td>
+    </tr>
+    <tr>
+        <td>Scoped </td>
+        <td>@ViewBag.Scoped.OperationId</td>
+    </tr>
+    <tr>
+        <td>Singleton</td>
+        <td>@ViewBag.Singleton.OperationId</td>
+    </tr>
+    <tr>
+        <td>SingletonInstance</td>
+        <td>@ViewBag.SingletonInstance.OperationId</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">OperationService Operarations:</td>
+    </tr>
+    <tr>
+        <td>Transient</td>
+        <td>@ViewBag.Service.TransientOperation.OperationId</td>
+    </tr>
+    <tr>
+        <td>Scoped </td>
+        <td>@ViewBag.Service.ScopedOperation.OperationId</td>
+    </tr>
+    <tr>
+        <td>Singleton</td>
+        <td>@ViewBag.Service.SingletonOperation.OperationId</td>
+    </tr>
+    <tr>
+        <td>SingletonInstance</td>
+        <td>@ViewBag.Service.SingletonInstanceOperation.OperationId</td>
+    </tr>
+</table>
+

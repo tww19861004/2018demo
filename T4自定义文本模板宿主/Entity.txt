@@ -1,0 +1,26 @@
+﻿<#@ template language="c#" HostSpecific="True" #>
+<#@ output extension= ".cs" #>
+<#
+	TemplateHost host = Host as TemplateHost;
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace <#=host.Param.NameSpace  #>
+{
+    public class <#= host.Param.TableName #>Entity
+    {
+<# 
+foreach(SchemaInfo info in host.Param.ColumnList)
+{
+ #>
+        /// <summary>
+        /// <#= info.ColumnDesc #>
+        /// </summary>
+        public <#= info.ColumnType #> <#= info.ColumnName #> { get; set; }
+
+<# } #>
+    }
+}

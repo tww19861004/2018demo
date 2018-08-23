@@ -7,17 +7,36 @@ using System.Threading.Tasks;
 
 namespace test
 {
+    public static class class1
+    {
+        public static IEnumerable<T> DistinctBy2<T, TResult>(this IEnumerable<T> source, Func<T, TResult> where)
+        {
+            HashSet<TResult> hashSetData = new HashSet<TResult>();
+            foreach (T item in source)
+            {
+                //哈希在插入数据会自行判断的
+                if (hashSetData.Add(where(item)))
+                {
+                    yield return item;
+                }
+            }
+        }
+    }
+    class test
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
     class Program
     {
-
+        
         static void Main(string[] args)
         {
-            string strFrom = GetTimeStamp(new DateTime(2018, 6, 4, 0, 0, 0, 0));
-            string strTo = GetTimeStamp(new DateTime(2018, 6, 5, 23, 59, 59, 0));
-            HttpClient hc = new HttpClient();
-            var task = hc.GetStringAsync($"12345?appName=12345&from={strFrom}&to={strTo}&agentId=&env=1");
-            task.Wait();
-            string str = task.Result;
+            List<test> lst = new List<test>();
+            lst.Add(new test() { id = 1, name = "tww1" });
+            lst.Add(new test() { id = 1, name = "tww2" });
+            lst.Add(new test() { id = 2, name = "tww3" });
+            var newlist = lst.DistinctBy2(r => r.id).ToList();
         }
 
         /// 获取时间戳  
