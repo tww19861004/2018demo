@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="com.eLong.TemplateService" elementFormDefault="qualified" targetNamespace="com.eLong.TemplateService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" />
+  <xs:element name="GetTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="templateNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="tagDatas" nillable="true" type="q1:TemplateTagDataCollection" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="GetTemplateResult" nillable="true" type="q2:Response" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="templateNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="GetTemplateInfoResult" nillable="true" type="q3:Response" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="templateInfo" nillable="true" type="q4:TemplateInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="productType" type="q5:ProductType" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="templateType" type="q6:TemplateType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="GetTemplateListResult" nillable="true" type="q7:Response" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" minOccurs="0" name="templateInfos" nillable="true" type="q8:ArrayOfTemplateInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PingResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/com.eLong.Template.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="TemplateTagDataCollection">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Dictionary" nillable="true" type="q1:ArrayOfKeyValueOfstringTemplateTagDataZImn68rE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TemplateTagDataCollection" nillable="true" type="tns:TemplateTagDataCollection" />
+  <xs:complexType name="TemplateTagData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChildTag" nillable="true" type="tns:ArrayOfTemplateTagDataCollection" />
+      <xs:element minOccurs="0" name="TagKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TemplateTagData" nillable="true" type="tns:TemplateTagData" />
+  <xs:complexType name="ArrayOfTemplateTagDataCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateTagDataCollection" nillable="true" type="tns:TemplateTagDataCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateTagDataCollection" nillable="true" type="tns:ArrayOfTemplateTagDataCollection" />
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="document" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="EnumResponseCode" type="tns:EnumResponseCode" />
+      <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Response" nillable="true" type="tns:Response" />
+  <xs:simpleType name="EnumResponseCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Fail" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EnumResponseCode" nillable="true" type="tns:EnumResponseCode" />
+  <xs:complexType name="TemplateInfo">
+    <xs:sequence>
+      <xs:element name="_x003C_ChangeOperateInfo_x003E_k__BackingField" nillable="true" type="tns:OperateInfo" />
+      <xs:element name="_x003C_Document_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ProductType_x003E_k__BackingField" type="tns:ProductType" />
+      <xs:element name="_x003C_Remark_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Status_x003E_k__BackingField" type="tns:TemplateStatus" />
+      <xs:element name="_x003C_SubjectTemplateContent_x003E_k__BackingField" nillable="true" type="xs:anyType" />
+      <xs:element name="_x003C_Subject_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TemplateContent_x003E_k__BackingField" nillable="true" type="xs:anyType" />
+      <xs:element name="_x003C_TemplateID_x003E_k__BackingField" type="ser:guid" />
+      <xs:element name="_x003C_TemplateNO_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TemplateTags_x003E_k__BackingField" nillable="true" type="tns:ArrayOfTemplateTagInfo" />
+      <xs:element name="_x003C_Template_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Type_x003E_k__BackingField" type="tns:TemplateType" />
+      <xs:element name="_x003C_WordCount_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TemplateInfo" nillable="true" type="tns:TemplateInfo" />
+  <xs:complexType name="OperateInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperateInfo" nillable="true" type="tns:OperateInfo" />
+  <xs:simpleType name="ProductType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Hotel" />
+          <xs:enumeration value="Air" />
+          <xs:enumeration value="CRM" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ProductType" nillable="true" type="tns:ProductType" />
+  <xs:simpleType name="TemplateStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Edit" />
+      <xs:enumeration value="Release" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TemplateStatus" nillable="true" type="tns:TemplateStatus" />
+  <xs:complexType name="ArrayOfTemplateTagInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateTagInfo" nillable="true" type="tns:TemplateTagInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateTagInfo" nillable="true" type="tns:ArrayOfTemplateTagInfo" />
+  <xs:complexType name="TemplateTagInfo">
+    <xs:sequence>
+      <xs:element name="_x003C_ChangeOperateInfo_x003E_k__BackingField" nillable="true" type="tns:OperateInfo" />
+      <xs:element name="_x003C_DataState_x003E_k__BackingField" type="tns:DataState" />
+      <xs:element name="_x003C_OrderNumber_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ParentID_x003E_k__BackingField" nillable="true" type="ser:guid" />
+      <xs:element name="_x003C_ParentTag_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Remark_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Source_x003E_k__BackingField" type="tns:TagSource" />
+      <xs:element name="_x003C_TagName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Tag_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TemplateID_x003E_k__BackingField" type="ser:guid" />
+      <xs:element name="_x003C_TemplateTagID_x003E_k__BackingField" type="ser:guid" />
+      <xs:element name="_x003C_TestData_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Type_x003E_k__BackingField" type="tns:TemplateTagType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TemplateTagInfo" nillable="true" type="tns:TemplateTagInfo" />
+  <xs:simpleType name="DataState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unchanged" />
+      <xs:enumeration value="Added" />
+      <xs:enumeration value="Deleted" />
+      <xs:enumeration value="Modified" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DataState" nillable="true" type="tns:DataState" />
+  <xs:simpleType name="TagSource">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Body" />
+          <xs:enumeration value="Subject" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="TagSource" nillable="true" type="tns:TagSource" />
+  <xs:simpleType name="TemplateTagType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Field">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Table">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Logic">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TemplateTagType" nillable="true" type="tns:TemplateTagType" />
+  <xs:simpleType name="TemplateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SMS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EMail">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Fax">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TemplateType" nillable="true" type="tns:TemplateType" />
+  <xs:complexType name="ArrayOfTemplateInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateInfo" nillable="true" type="tns:TemplateInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateInfo" nillable="true" type="tns:ArrayOfTemplateInfo" />
+</xs:schema>

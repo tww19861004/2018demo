@@ -153,6 +153,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "itextsharpdemo", "itextshar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itextsharpdemo", "itextsharpdemo\itextsharpdemo.csproj", "{78CEE63D-8BFF-4CDB-A6DA-CE057AFC4AB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvokeWCFTest", "InvokeWCFTest\InvokeWCFTest.csproj", "{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -343,6 +345,10 @@ Global
 		{78CEE63D-8BFF-4CDB-A6DA-CE057AFC4AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78CEE63D-8BFF-4CDB-A6DA-CE057AFC4AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78CEE63D-8BFF-4CDB-A6DA-CE057AFC4AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,6 +400,7 @@ Global
 		{40B0A2F7-8660-46AA-8AD4-DE0E95391A41} = {3DF47583-59A4-4CAC-A285-26C22A6C69B9}
 		{EBF89CEE-9078-4A8C-BC66-56BC343B485A} = {E65C7C96-4B67-47C1-BB7B-400821530D55}
 		{78CEE63D-8BFF-4CDB-A6DA-CE057AFC4AB7} = {F9D5DDD2-95C3-4037-B78F-85F6664E8750}
+		{DCE4F6D9-1362-44F2-93CC-9B8D4975D2A3} = {45A7FF7B-BD4E-4417-AFB2-5D194BDE182F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {819BC56C-AD9B-4619-989F-711FCC7E312B}

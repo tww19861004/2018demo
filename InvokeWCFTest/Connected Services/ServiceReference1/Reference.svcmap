@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9658d132-b036-418a-9d85-d1297def0c2c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="com.eLong.TemplateService.wsdl" MetadataType="Wsdl" ID="cb775ad3-a104-47f6-a373-1b5bbc7a0d08" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9a8dada3-9234-4fa7-a9f0-18955d59c865" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+    <MetadataFile FileName="com.eLong.TemplateService.xsd" MetadataType="Schema" ID="d6a8e411-ed4b-44c8-8ded-60907f8f733d" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="de731beb-6b50-4557-a1d4-23398d203117" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+    <MetadataFile FileName="com.eLong.Template.Model.xsd" MetadataType="Schema" ID="4aa09dc0-21f3-47c3-8671-32f08672b3dd" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="2f5a9bdf-3e72-44b1-bf98-9b5322f0d230" SourceId="1" SourceUrl="http://hotelapi.vip.elong.com/TemplateService/TemplateService.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
