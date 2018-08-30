@@ -15,6 +15,14 @@ namespace test
         static void Main(string[] args)
         {
             var res = JsonConvert.DeserializeObject<JObject>(template_mappping);
+            if(res.ContainsKey("111233"))
+            {
+
+            }
+            if (res.ContainsKey("11123"))
+            {
+
+            }
         }
 
     }
