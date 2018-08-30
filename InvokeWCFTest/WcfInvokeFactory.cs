@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace InvokeWCFTest
         #region WCF服务工厂
         public static T CreateServiceByUrl<T>(string url)
         {
-            return CreateServiceByUrl<T>(url, "basicHttpBinding");
+            return CreateServiceByUrl<T>(url, "wshttpbinding");
         }
 
         public static T CreateServiceByUrl<T>(string url, string bing)
@@ -27,6 +28,7 @@ namespace InvokeWCFTest
                 EndpointAddress address = new EndpointAddress(url);
                 Binding binding = CreateBinding(bing);
                 ChannelFactory<T> factory = new ChannelFactory<T>(binding, address);
+                //factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
                 return factory.CreateChannel();
             }
             catch (Exception ex)
@@ -45,7 +47,20 @@ namespace InvokeWCFTest
         private static Binding CreateBinding(string binding)
         {
             Binding bindinginstance = null;
-            if (binding.ToLower() == "basichttpbinding")
+            if (binding.ToLower() == "webhttpbinding")
+            {
+                WebHttpBinding hb = new WebHttpBinding();
+                hb.MaxBufferSize = 2147483647;
+                hb.MaxBufferPoolSize = 2147483647;
+                hb.MaxReceivedMessageSize = 2147483647;
+                hb.ReaderQuotas.MaxStringContentLength = 2147483647;
+                hb.CloseTimeout = new TimeSpan(0, 30, 0);
+                hb.OpenTimeout = new TimeSpan(0, 30, 0);
+                hb.ReceiveTimeout = new TimeSpan(0, 30, 0);
+                hb.SendTimeout = new TimeSpan(0, 30, 0);               
+                bindinginstance = hb;
+            }
+            else if (binding.ToLower() == "basichttpbinding")
             {
                 BasicHttpBinding ws = new BasicHttpBinding();
                 ws.MaxBufferSize = 2147483647;
@@ -56,7 +71,7 @@ namespace InvokeWCFTest
                 ws.OpenTimeout = new TimeSpan(0, 30, 0);
                 ws.ReceiveTimeout = new TimeSpan(0, 30, 0);
                 ws.SendTimeout = new TimeSpan(0, 30, 0);
-
+                ws.TextEncoding = Encoding.UTF8;                
                 bindinginstance = ws;
             }
             else if (binding.ToLower() == "nettcpbinding")
@@ -71,7 +86,7 @@ namespace InvokeWCFTest
                 WSHttpBinding ws = new WSHttpBinding(SecurityMode.None);
                 ws.MaxReceivedMessageSize = 65535000;
                 ws.Security.Message.ClientCredentialType = System.ServiceModel.MessageCredentialType.Windows;
-                ws.Security.Transport.ClientCredentialType = System.ServiceModel.HttpClientCredentialType.Windows;
+                ws.Security.Transport.ClientCredentialType = System.ServiceModel.HttpClientCredentialType.Windows;                
                 bindinginstance = ws;
             }
             return bindinginstance;

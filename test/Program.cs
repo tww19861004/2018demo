@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -6,45 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace test
-{
-    public static class class1
-    {
-        public static IEnumerable<T> DistinctBy2<T, TResult>(this IEnumerable<T> source, Func<T, TResult> where)
-        {
-            HashSet<TResult> hashSetData = new HashSet<TResult>();
-            foreach (T item in source)
-            {
-                //哈希在插入数据会自行判断的
-                if (hashSetData.Add(where(item)))
-                {
-                    yield return item;
-                }
-            }
-        }
-    }
-    class test
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-    }
+{    
     class Program
     {
-        
+        private static readonly string template_mappping = "{\"11123\":\"117\",\"11251\":\"118\",\"11252\":\"119\",\"11253\":\"120\",\"11254\":\"121\",\"11255\":\"122\",\"12256\":\"123\",\"12265\":\"124\",\"12266\":\"125\",\"12267\":\"126\",\"12300\":\"127\",\"12301\":\"128\",\"12302\":\"129\",\"12303\":\"130\",\"12304\":\"131\",\"12305\":\"132\",\"12306\":\"133\",\"12307\":\"134\",\"12308\":\"135\",\"12309\":\"136\",\"12310\":\"137\",\"11042\":\"300\",\"11125\":\"301\",\"11126\":\"302\",\"11127\":\"303\",\"11129\":\"304\",\"11609\":\"305\",\"11610\":\"306\",\"12264\":\"307\",\"12257\":\"308\",\"12258\":\"309\",\"12259\":\"310\",\"12260\":\"311\",\"12261\":\"312\",\"11192\":\"313\",\"12273\":\"314\",\"12274\":\"315\",\"11191\":\"162\"}";
         static void Main(string[] args)
         {
-            List<test> lst = new List<test>();
-            lst.Add(new test() { id = 1, name = "tww1" });
-            lst.Add(new test() { id = 1, name = "tww2" });
-            lst.Add(new test() { id = 2, name = "tww3" });
-            var newlist = lst.DistinctBy2(r => r.id).ToList();
+            var res = JsonConvert.DeserializeObject<JObject>(template_mappping);
         }
 
-        /// 获取时间戳  
-        /// </summary>  
-        public static string GetTimeStamp(DateTime dt)
-        {
-            TimeSpan ts = dt - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return Convert.ToInt64(ts.TotalMilliseconds).ToString();
-        }
     }
 }
