@@ -9,11 +9,11 @@ namespace reflection_demo
 {
     public class EventTypeAttribute : Attribute
     {
-        private int index;
-        private String name;
-        private String desc;
-        private String templateNo;
-        private String type;
+        public int index;
+        public String name;
+        public String desc;
+        public String templateNo;
+        public String type;
         public EventTypeAttribute(int index, string name, string desc, string templateNo, string type)
         {
             this.index = index;
@@ -28,10 +28,10 @@ namespace reflection_demo
         /// <summary>
         /// 缓存数据
         /// </summary>
-        public static readonly List<EventTypeAttribute> values;
+        public static readonly List<EventTypeAttribute> Values;
         static EventType()
         {
-            values = InitData();
+            Values = InitData();
         }
         public static List<EventTypeAttribute> InitData()
         {
@@ -56,18 +56,18 @@ namespace reflection_demo
         /// <summary>
         /// 支付失败,sms
         /// </summary>
-        public static EventTypeAttribute SMS_TEMPLATE_PAY_FAIL = new EventTypeAttribute(-1, "payFailure", "支付失败", "1234", "sms");
+        //public static EventTypeAttribute SMS_TEMPLATE_PAY_FAIL = new EventTypeAttribute(-1, "payFailure", "支付失败", "1234", "sms");
 
         /// <summary>
         /// 支付成功,sms
         /// </summary>
-        public static EventTypeAttribute SMS_TEMPLATE_PAY_SUCCESS = new EventTypeAttribute(1, "paySuccess", "支付成功", "5678", "sms");
+        //public static EventTypeAttribute SMS_TEMPLATE_PAY_SUCCESS = new EventTypeAttribute(1, "paySuccess", "支付成功", "5678", "sms");
     }
     class Program
     {
         static void Main(string[] args)
         {
-            var res = EventType.values;
+            var EventTypeAttribute = EventType.Values?.Find(x => x.index.ToString() == "11" && x.type == "sms");
         }
     }
 }
