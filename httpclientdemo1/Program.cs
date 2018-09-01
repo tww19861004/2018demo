@@ -24,8 +24,8 @@ namespace httpclientdemo1
             try
             {
                 response.EnsureSuccessStatusCode();
-                result = await response.Content.ReadAsStringAsync();
-                // Handle success
+                string str = $"response:{await response.Content.ReadAsStringAsync()}";
+
             }
             catch (HttpRequestException ex)
             {
