@@ -58,6 +58,30 @@ namespace NewtonsoftDemo
     {
         static void Main(string[] args)
         {
+
+            using (HttpClient hc12 = new HttpClient())
+            {
+                //hc.DefaultRequestHeaders.Add("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+                //hc.DefaultRequestHeaders.Add("Connection", "Close");
+                var nvc = new List<KeyValuePair<string, string>>();
+                nvc.Add(new KeyValuePair<string, string>("uid", "240000000539259828"));
+                nvc.Add(new KeyValuePair<string, string>("gorderId", "65946222"));
+                var client = new HttpClient();
+                var req = new HttpRequestMessage(HttpMethod.Post, "xxxxxx/GetShortLink") { Content = new FormUrlEncodedContent(nvc) };
+                var sendTask = hc12.SendAsync(req);
+                sendTask.Wait();
+                var res = sendTask.Result.Content.ReadAsStringAsync();
+                res.Wait();
+                JObject jobject = JsonConvert.DeserializeObject<JObject>(res.Result);
+                if (jobject != null)
+                {
+                    if (jobject["msg"]?.ToString() == "success")
+                    {
+                        string teset1 = jobject["shortLink"]?.ToString();
+                    }
+                }
+            }
+
             DateTime begin = DateTime.Now.AddHours(-72);
             DateTime end = DateTime.Now;
 
@@ -67,6 +91,8 @@ namespace NewtonsoftDemo
             handler.CookieContainer.Add(new Cookie() { Name = "userNam2e", Value = "%E5%94%90%E4%BC%9F%E4%BC%9F", Domain = "xxxxxx" });
             handler.CookieContainer.Add(new Cookie() { Name = "userTok3en", Value = "92add0a4ee8", Domain = "xxxxxx" });
             HttpClient hc = new HttpClient(handler);
+
+            //hc.DefaultRequestHeaders.Add("Accept", "application/*+xml;version=5.1");            
 
             var handler1 = new HttpClientHandler() { UseCookies = true };
             HttpClient hc1 = new HttpClient(handler1);
@@ -101,7 +127,7 @@ namespace NewtonsoftDemo
                         {
                             var res = hc1.GetStringAsync($"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx").Result;
                             dynamic res1234 = JsonConvert.DeserializeObject<JObject>(res);
-                            if (res1234.result.rows == 0)
+                            if (res1234.result.rows == 0) 
                             {
                                 sb.Append($"{item.DestId},{item.Count},{item1.DestId},,,,{Environment.NewLine}");
                             }
