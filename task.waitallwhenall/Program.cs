@@ -32,6 +32,7 @@ namespace task.waitallwhenall
             {
                 if (tasks[i].IsFaulted)
                 {
+                    string str = $"Message:{tasks[i].Exception?.InnerException.Message},StackTrace:{tasks[i].Exception?.InnerException.StackTrace}";
                     continue;
                 }
             }
@@ -41,12 +42,20 @@ namespace task.waitallwhenall
 
         private static Int32 Sum(object i)
         {
-            System.Threading.Thread.Sleep(10000);
-            if (Convert.ToInt32(i) != 100)
+            try
             {
-                throw new Exception("模拟异常");
+                System.Threading.Thread.Sleep(10000);
+                if (Convert.ToInt32(i) != 1)
+                {
+                    throw new Exception("模拟异常");
+                }
+                return Convert.ToInt32(i) + 1;
             }
-            return Convert.ToInt32(i) + 1;
+            catch(Exception ex)
+            {
+                throw;
+            }
+            
         }
     }
 }
