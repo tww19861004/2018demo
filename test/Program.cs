@@ -14,6 +14,8 @@ namespace test
     {        
         static void Main(string[] args)
         {
+            string s1 = null;
+            string s2 = s1 ?? string.Empty;
             int j = 8784;
             long i = long.Parse(( j * 60 * 60 * 1000).ToString());
             DateTime dt = ConvertLongToDateTime(i);

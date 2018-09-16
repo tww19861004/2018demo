@@ -42,20 +42,50 @@ namespace task.waitallwhenall
 
         private static Int32 Sum(object i)
         {
-            try
-            {
-                System.Threading.Thread.Sleep(10000);
-                if (Convert.ToInt32(i) != 1)
+            //try
+            //{
+                System.Threading.Thread.Sleep(100);
+                if (Convert.ToInt32(i) != 100)
                 {
-                    throw new Exception("模拟异常");
+                    decimal j = 0;
+                    decimal k = device(j);
                 }
                 return Convert.ToInt32(i) + 1;
-            }
-            catch(Exception ex)
+            //}
+            //catch(Exception ex)
+            //{
+            //    int i11 = ex.LineNumber();
+            //    return i11;
+            //}
+        }
+
+        private static decimal device(decimal i)
+        {
+            return 100 / i;
+        }
+    }
+
+    public static class ExceptionHelper
+    {
+        public static int LineNumber(this Exception e)
+        {
+
+            int linenum = 0;
+            try
             {
-                throw;
+                //linenum = Convert.ToInt32(e.StackTrace.Substring(e.StackTrace.LastIndexOf(":line") + 5));
+
+                //For Localized Visual Studio ... In other languages stack trace  doesn't end with ":Line 12"
+                linenum = Convert.ToInt32(e.StackTrace.Substring(e.StackTrace.LastIndexOf(' ')));
+
             }
-            
+
+
+            catch
+            {
+                //Stack trace is not available!
+            }
+            return linenum;
         }
     }
 }
