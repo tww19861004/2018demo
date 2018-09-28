@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TCGHotel.Common;
 
 namespace test
 {
@@ -14,13 +15,11 @@ namespace test
     {        
         static void Main(string[] args)
         {
-            string s1 = null;
-            string s2 = s1 ?? string.Empty;
-            int j = 8784;
-            long i = long.Parse(( j * 60 * 60 * 1000).ToString());
-            DateTime dt = ConvertLongToDateTime(i);
-            
-            long k = long.Parse(DateTime.UtcNow.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds.ToString());
+            SMSAPIService.SendSms("11129", "240000000405936657", "1", new Dictionary<string, string>()
+                {
+                    { "mobile","15062437243"},
+                    { "uid","240000000405936657"}
+                });
         }
 
         // long --> DateTime

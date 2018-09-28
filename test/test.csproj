@@ -32,6 +32,46 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AsyncIO, Version=0.1.18.0, Culture=neutral, PublicKeyToken=44a94435bd6f33f8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\AsyncIO.dll</HintPath>
+    </Reference>
+    <Reference Include="Cat, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\Cat.dll</HintPath>
+    </Reference>
+    <Reference Include="DSF.ClientAsync, Version=2.1.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\DSF.ClientAsync.dll</HintPath>
+    </Reference>
+    <Reference Include="DSF.ServiceContract, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\DSF.ServiceContract.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="LumiSoft.Net, Version=2.0.5000.30795, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\LumiSoft.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="NetMQ, Version=3.3.3.1, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\NetMQ.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -45,6 +85,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="TCGHotel.Common.Enums">
       <HintPath>..\..\..\..\..\DSF\dsf.ghotel.order.data\Common\TCGHotel.Common.Enums\bin\Debug\TCGHotel.Common.Enums.dll</HintPath>
+    </Reference>
+    <Reference Include="TCGHotel.Common.Helper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DSF\dsf.ghotel.order.data\Common\Helper\TCGHotel.Common.Helper\bin\Debug\TCGHotel.Common.Helper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
